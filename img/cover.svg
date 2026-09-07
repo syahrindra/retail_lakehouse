@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" style="background:#F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-opacity="0.08" />
+    </filter>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="1" fill="#E2E8F0" />
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94A3B8" />
+    </marker>
+  </defs>
+
+  <!-- Background Grid -->
+  <rect width="1200" height="630" fill="url(#grid)" />
+
+  <!-- Outer Card Frame (Excalidraw / Draw.io Style) -->
+  <rect x="40" y="40" width="1120" height="550" rx="20" fill="#FFFFFF" stroke="#334155" stroke-width="2.5" filter="url(#shadow)" />
+
+  <!-- Top Badges / Tagline -->
+  <g transform="translate(80, 80)">
+    <rect x="0" y="0" width="140" height="32" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5" />
+    <text x="70" y="21" text-anchor="middle" font-size="13" font-weight="700" fill="#1D4ED8">DATA LAKEHOUSE</text>
+
+    <rect x="155" y="0" width="125" height="32" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5" />
+    <text x="217" y="21" text-anchor="middle" font-size="13" font-weight="700" fill="#047857">10.59M ROWS</text>
+
+    <rect x="295" y="0" width="120" height="32" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5" />
+    <text x="355" y="21" text-anchor="middle" font-size="13" font-weight="700" fill="#B45309">$0 CLOUD COST</text>
+
+    <!-- Reserved Space for User's Tools / Platform Logos -->
+    <g transform="translate(680, -5)">
+      <rect x="0" y="0" width="360" height="42" rx="10" fill="#F8FAFC" stroke="#94A3B8" stroke-dasharray="4 4" stroke-width="1.5" />
+      <text x="180" y="26" text-anchor="middle" font-size="12" font-weight="600" fill="#64748B" letter-spacing="0.5">[ LOGO / TOOL STACK AREA ]</text>
+    </g>
+  </g>
+
+  <!-- Main Title & Subtitle -->
+  <g transform="translate(80, 165)">
+    <text x="0" y="45" font-size="44" font-weight="800" fill="#0F172A" letter-spacing="-0.5">Enterprise E-Commerce Lakehouse</text>
+    <text x="0" y="95" font-size="34" font-weight="700" fill="#334155">&amp; Financial Settlement Mart</text>
+    <text x="0" y="145" font-size="18" font-weight="400" fill="#64748B">
+      A high-performance Medallion Architecture processing 10.59M dirty events with PyArrow, DuckDB, and dbt.
+    </text>
+  </g>
+
+  <!-- Visual Architecture Snippet Cards -->
+  <g transform="translate(80, 360)">
+    <!-- Bronze Card -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="220" height="170" rx="14" fill="#FFF7ED" stroke="#EA580C" stroke-width="2" filter="url(#shadow)" />
+      <rect x="15" y="15" width="80" height="24" rx="6" fill="#FFEDD5" />
+      <text x="55" y="31" text-anchor="middle" font-size="11" font-weight="700" fill="#C2410C">BRONZE</text>
+      <text x="15" y="68" font-size="16" font-weight="700" fill="#1E293B">Landing Layer</text>
+      <text x="15" y="94" font-size="12" fill="#475569">• 10.59M Raw Parquet</text>
+      <text x="15" y="116" font-size="12" fill="#475569">• Vectorized Ingestion</text>
+      <text x="15" y="138" font-size="12" fill="#475569">• &lt; 500 MB RAM Stream</text>
+    </g>
+
+    <!-- Arrow 1 -->
+    <path d="M 235 85 L 265 85" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)" />
+
+    <!-- Silver Card -->
+    <g transform="translate(280, 0)">
+      <rect x="0" y="0" width="220" height="170" rx="14" fill="#EEF2FF" stroke="#4F46E5" stroke-width="2" filter="url(#shadow)" />
+      <rect x="15" y="15" width="70" height="24" rx="6" fill="#E0E7FF" />
+      <text x="50" y="31" text-anchor="middle" font-size="11" font-weight="700" fill="#4338CA">SILVER</text>
+      <text x="15" y="68" font-size="16" font-weight="700" fill="#1E293B">Conformed Views</text>
+      <text x="15" y="94" font-size="12" fill="#475569">• Window Deduplication</text>
+      <text x="15" y="116" font-size="12" fill="#475569">• ISO-2 Country Standard</text>
+      <text x="15" y="138" font-size="12" fill="#475569">• Total Imputation</text>
+    </g>
+
+    <!-- Arrow 2 -->
+    <path d="M 515 85 L 545 85" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)" />
+
+    <!-- Gold Card -->
+    <g transform="translate(560, 0)">
+      <rect x="0" y="0" width="220" height="170" rx="14" fill="#FEFCE8" stroke="#CA8A04" stroke-width="2" filter="url(#shadow)" />
+      <rect x="15" y="15" width="60" height="24" rx="6" fill="#FEF9C3" />
+      <text x="45" y="31" text-anchor="middle" font-size="11" font-weight="700" fill="#A16207">GOLD</text>
+      <text x="15" y="68" font-size="16" font-weight="700" fill="#1E293B">Star Schema</text>
+      <text x="15" y="94" font-size="12" fill="#475569">• Surrogate Keys</text>
+      <text x="15" y="116" font-size="12" fill="#475569">• Orphan Fallback (-1)</text>
+      <text x="15" y="138" font-size="12" fill="#475569">• Net Settlement Math</text>
+    </g>
+
+    <!-- Arrow 3 -->
+    <path d="M 795 85 L 825 85" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrow)" />
+
+    <!-- Serving Card -->
+    <g transform="translate(840, 0)">
+      <rect x="0" y="0" width="200" height="170" rx="14" fill="#F0FDF4" stroke="#16A34A" stroke-width="2" filter="url(#shadow)" />
+      <rect x="15" y="15" width="80" height="24" rx="6" fill="#DCFCE7" />
+      <text x="55" y="31" text-anchor="middle" font-size="11" font-weight="700" fill="#15803D">SERVING</text>
+      <text x="15" y="68" font-size="16" font-weight="700" fill="#1E293B">Analytics Mart</text>
+      <text x="15" y="94" font-size="12" fill="#475569">• Conversion Rates</text>
+      <text x="15" y="116" font-size="12" fill="#475569">• Geo Revenue</text>
+      <text x="15" y="138" font-size="12" fill="#475569">• Gateway Health</text>
+    </g>
+  </g>
+</svg>

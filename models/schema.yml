@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_customers
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
+      - name: country_code
+        tests:
+          - accepted_values:
+              values: ['ID', 'US', 'SG', 'OTHER']
+
+  - name: fct_order_payments
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_key
+      - name: gross_amount_usd
+        tests:
+          - not_null

@@ -1,0 +1,7 @@
+retail_lakehouse:
+  outputs:
+    dev:
+      type: duckdb
+      path: analytics_warehouse.duckdb
+      threads: 4
+  target: dev

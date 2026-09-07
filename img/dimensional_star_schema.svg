@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 680" width="1150" height="680" style="background:#FAFBFD; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="schema-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.07" />
+    </filter>
+    <pattern id="schema-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="0.9" fill="#CBD5E1" />
+    </pattern>
+    <marker id="rel-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#2563EB" />
+    </marker>
+  </defs>
+
+  <rect width="1150" height="680" fill="url(#schema-grid)" />
+
+  <!-- Header Section -->
+  <g transform="translate(50, 35)">
+    <text x="0" y="24" font-size="22" font-weight="800" fill="#0F172A">Dimensional Modeling: Gold Star Schema</text>
+    <text x="0" y="46" font-size="13" font-weight="500" fill="#64748B">Referential Integrity Design with Surrogate Key &amp; Unknown Member Fallback (-1)</text>
+
+    <!-- Reserved Space for Platform / Tool Logos -->
+    <g transform="translate(700, -10)">
+      <rect x="0" y="0" width="350" height="52" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-dasharray="4 4" stroke-width="1.5" />
+      <text x="175" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#475569" letter-spacing="0.5">PLATFORM / TOOLS LOGO AREA</text>
+      <text x="175" y="40" text-anchor="middle" font-size="10" fill="#94A3B8">[ DuckDB • dbt-core • Star Schema ]</text>
+    </g>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- DIMENSION TABLE: dim_customers             -->
+  <!-- ========================================== -->
+  <g transform="translate(60, 120)">
+    <rect x="0" y="0" width="400" height="490" rx="14" fill="#FFFFFF" stroke="#CA8A04" stroke-width="2" filter="url(#schema-shadow)" />
+    
+    <!-- Table Header Bar -->
+    <path d="M 0 14 C 0 6 6 0 14 0 L 386 0 C 394 0 400 6 400 14 L 400 50 L 0 50 Z" fill="#FEF9C3" />
+    <rect x="16" y="13" width="90" height="24" rx="6" fill="#FDE047" />
+    <text x="61" y="29" text-anchor="middle" font-size="11" font-weight="800" fill="#854D0E">DIMENSION</text>
+    <text x="118" y="31" font-size="16" font-weight="800" fill="#713F12">dim_customers</text>
+
+    <!-- Table Meta Info -->
+    <text x="16" y="72" font-size="11" fill="#64748B">Grain: 1 row per unique customer entity</text>
+    <text x="16" y="88" font-size="11" font-weight="600" fill="#A16207">Total Rows: 500,001 (500,000 + 1 Unknown Member)</text>
+
+    <!-- Divider -->
+    <line x1="0" y1="100" x2="400" y2="100" stroke="#FEF08A" stroke-width="1.5" />
+
+    <!-- Column Rows -->
+    <!-- Column 1: PK customer_key -->
+    <g transform="translate(16, 120)">
+      <rect x="0" y="-14" width="368" height="28" rx="6" fill="#FEFCE8" stroke="#FACC15" stroke-width="1" />
+      <rect x="6" y="-10" width="28" height="20" rx="4" fill="#EAB308" />
+      <text x="20" y="4" text-anchor="middle" font-size="10" font-weight="800" fill="#FFFFFF">PK</text>
+      <text x="42" y="4" font-size="12" font-weight="700" font-family="monospace" fill="#0F172A">customer_key</text>
+      <text x="260" y="4" font-size="11" font-weight="600" fill="#CA8A04">INTEGER (Surrogate)</text>
+    </g>
+
+    <!-- Column 2: original_customer_id -->
+    <g transform="translate(16, 160)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">original_customer_id</text>
+      <text x="260" y="4" font-size="11" fill="#64748B">VARCHAR (Natural Key)</text>
+    </g>
+
+    <!-- Column 3: clean_email -->
+    <g transform="translate(16, 195)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">clean_email</text>
+      <text x="260" y="4" font-size="11" fill="#64748B">VARCHAR</text>
+    </g>
+
+    <!-- Column 4: country_code -->
+    <g transform="translate(16, 230)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">country_code</text>
+      <text x="260" y="4" font-size="11" fill="#64748B">VARCHAR (ISO-2)</text>
+    </g>
+
+    <!-- Column 5: registered_at -->
+    <g transform="translate(16, 265)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">registered_at</text>
+      <text x="260" y="4" font-size="11" fill="#64748B">TIMESTAMP</text>
+    </g>
+
+    <!-- Unknown Member Fallback Card Callout -->
+    <g transform="translate(16, 305)">
+      <rect x="0" y="0" width="368" height="160" rx="8" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 3" />
+      <text x="14" y="22" font-size="11" font-weight="800" fill="#B45309">SPECIAL RECORD: UNKNOWN MEMBER FALLBACK</text>
+      <text x="14" y="42" font-size="11" fill="#78350F">Guarantees zero referential integrity violations</text>
+      <text x="14" y="58" font-size="11" fill="#78350F">when upstream orders contain missing customer IDs.</text>
+      
+      <rect x="12" y="70" width="344" height="74" rx="6" fill="#FFFFFF" stroke="#FDE68A" />
+      <text x="22" y="88" font-size="10" font-family="monospace" fill="#0F172A">customer_key:         -1</text>
+      <text x="22" y="104" font-size="10" font-family="monospace" fill="#0F172A">original_customer_id: 'UNKNOWN'</text>
+      <text x="22" y="120" font-size="10" font-family="monospace" fill="#0F172A">clean_email:          'unknown@noemail.com'</text>
+      <text x="22" y="136" font-size="10" font-family="monospace" fill="#0F172A">country_code:         'OTHER'</text>
+    </g>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- RELATIONSHIP CONNECTOR (1 : N)             -->
+  <!-- ========================================== -->
+  <g transform="translate(460, 235)">
+    <path d="M 0 0 C 70 0, 70 0, 130 0" stroke="#2563EB" stroke-width="2.5" fill="none" marker-end="url(#rel-arrow)" />
+    <rect x="42" y="-22" width="55" height="18" rx="4" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1" />
+    <text x="69" y="-9" text-anchor="middle" font-size="10" font-weight="700" fill="#1D4ED8">1 : N</text>
+    <text x="69" y="18" text-anchor="middle" font-size="10" font-weight="600" fill="#64748B">Joins on customer_key</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- FACT TABLE: fct_order_payments             -->
+  <!-- ========================================== -->
+  <g transform="translate(600, 120)">
+    <rect x="0" y="0" width="490" height="490" rx="14" fill="#FFFFFF" stroke="#2563EB" stroke-width="2" filter="url(#schema-shadow)" />
+    
+    <!-- Table Header Bar -->
+    <path d="M 0 14 C 0 6 6 0 14 0 L 476 0 C 484 0 490 6 490 14 L 490 50 L 0 50 Z" fill="#DBEAFE" />
+    <rect x="16" y="13" width="60" height="24" rx="6" fill="#93C5FD" />
+    <text x="46" y="29" text-anchor="middle" font-size="11" font-weight="800" fill="#1E40AF">FACT</text>
+    <text x="88" y="31" font-size="16" font-weight="800" fill="#1E3A8A">fct_order_payments</text>
+
+    <!-- Table Meta Info -->
+    <text x="16" y="72" font-size="11" fill="#64748B">Grain: 1 row per order (4,500,000 distinct orders)</text>
+    <text x="16" y="88" font-size="11" font-weight="600" fill="#2563EB">Total Rows: 4,500,000 Fact Records</text>
+
+    <!-- Divider -->
+    <line x1="0" y1="100" x2="490" y2="100" stroke="#BFDBFE" stroke-width="1.5" />
+
+    <!-- Column Rows -->
+    <!-- Column 1: PK order_id -->
+    <g transform="translate(16, 120)">
+      <rect x="0" y="-14" width="458" height="28" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1" />
+      <rect x="6" y="-10" width="28" height="20" rx="4" fill="#3B82F6" />
+      <text x="20" y="4" text-anchor="middle" font-size="10" font-weight="800" fill="#FFFFFF">PK</text>
+      <text x="42" y="4" font-size="12" font-weight="700" font-family="monospace" fill="#0F172A">order_id</text>
+      <text x="320" y="4" font-size="11" font-weight="600" fill="#2563EB">VARCHAR</text>
+    </g>
+
+    <!-- Column 2: FK customer_key -->
+    <g transform="translate(16, 160)">
+      <rect x="0" y="-14" width="458" height="28" rx="6" fill="#FEFCE8" stroke="#FACC15" stroke-width="1" />
+      <rect x="6" y="-10" width="28" height="20" rx="4" fill="#EAB308" />
+      <text x="20" y="4" text-anchor="middle" font-size="10" font-weight="800" fill="#FFFFFF">FK</text>
+      <text x="42" y="4" font-size="12" font-weight="700" font-family="monospace" fill="#0F172A">customer_key</text>
+      <text x="320" y="4" font-size="11" font-weight="600" fill="#CA8A04">INTEGER (-> dim_cust)</text>
+    </g>
+
+    <!-- Column 3: order_status -->
+    <g transform="translate(16, 195)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">order_status</text>
+      <text x="320" y="4" font-size="11" fill="#64748B">VARCHAR</text>
+    </g>
+
+    <!-- Column 4: payment_method -->
+    <g transform="translate(16, 225)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">payment_method</text>
+      <text x="320" y="4" font-size="11" fill="#64748B">VARCHAR</text>
+    </g>
+
+    <!-- Column 5: payment_status -->
+    <g transform="translate(16, 255)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">payment_status</text>
+      <text x="320" y="4" font-size="11" fill="#64748B">VARCHAR (Ranked State)</text>
+    </g>
+
+    <!-- Column 6: order_timestamp -->
+    <g transform="translate(16, 285)">
+      <text x="42" y="4" font-size="12" font-weight="500" font-family="monospace" fill="#334155">order_timestamp</text>
+      <text x="320" y="4" font-size="11" fill="#64748B">TIMESTAMP</text>
+    </g>
+
+    <!-- Column 7: gross_amount_usd -->
+    <g transform="translate(16, 320)">
+      <rect x="0" y="-14" width="458" height="28" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1" />
+      <text x="12" y="4" font-size="10" font-weight="800" fill="#16A34A">MEASURE</text>
+      <text x="75" y="4" font-size="12" font-weight="700" font-family="monospace" fill="#0F172A">gross_amount_usd</text>
+      <text x="320" y="4" font-size="11" font-weight="600" fill="#16A34A">DOUBLE (Imputed)</text>
+    </g>
+
+    <!-- Column 8: net_settled_amount_usd -->
+    <g transform="translate(16, 360)">
+      <rect x="0" y="-14" width="458" height="28" rx="6" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1" />
+      <text x="12" y="4" font-size="10" font-weight="800" fill="#16A34A">MEASURE</text>
+      <text x="75" y="4" font-size="12" font-weight="700" font-family="monospace" fill="#0F172A">net_settled_amount_usd</text>
+      <text x="320" y="4" font-size="11" font-weight="600" fill="#16A34A">DOUBLE (Calculated)</text>
+    </g>
+
+    <!-- Business Logic Summary Box -->
+    <g transform="translate(16, 400)">
+      <rect x="0" y="0" width="458" height="68" rx="8" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="12" y="20" font-size="11" font-weight="700" fill="#334155">Financial Settlement Logic:</text>
+      <text x="12" y="38" font-size="10" font-family="monospace" fill="#1E293B">net_settled = IF(payment_status == 'SUCCESS', gross, 0.0)</text>
+      <text x="12" y="54" font-size="10" font-family="monospace" fill="#1E293B">conversion_rate = SUM(net_settled) / SUM(gross) * 100</text>
+    </g>
+  </g>
+</svg>

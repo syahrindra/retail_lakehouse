@@ -1,0 +1,44 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# DuckDB database and temp files
+*.duckdb
+*.duckdb.wal
+*.duckdb.tmp
+analytics_warehouse.duckdb
+
+# dbt artifacts and logs
+target/
+dbt_packages/
+logs/
+*.log
+
+# Large datasets and raw data lake
+data/
+*.parquet
+*.csv
+
+# Environment and IDE settings
+.env
+.user.yml
+.vscode/
+.idea/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Personal notes
+notes/
