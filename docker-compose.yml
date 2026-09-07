@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  retail_lakehouse:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: retail_lakehouse_runner
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DBT_PROFILES_DIR=/app
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+    command: python orchestrator.py

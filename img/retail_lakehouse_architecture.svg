@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1350 820" width="1350" height="820" style="background:#FAFBFD; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.06" />
+    </filter>
+    <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="0.9" fill="#CBD5E1" />
+    </pattern>
+    <marker id="flow-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B" />
+    </marker>
+    <marker id="test-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981" />
+    </marker>
+  </defs>
+
+  <!-- Background Pattern -->
+  <rect width="1350" height="820" fill="url(#dot-grid)" />
+
+  <!-- Diagram Title & Logo Reserved Box Header -->
+  <g transform="translate(45, 30)">
+    <text x="0" y="28" font-size="24" font-weight="800" fill="#0F172A">Medallion Data Lakehouse Architecture</text>
+    <text x="0" y="52" font-size="14" font-weight="500" fill="#64748B">End-to-End Vectorized Batch Ingestion, Transformation &amp; Settlement Mart (10.59M Events)</text>
+
+    <!-- Reserved Space for Platform / Tool Logos -->
+    <g transform="translate(850, -5)">
+      <rect x="0" y="0" width="410" height="58" rx="10" fill="#FFFFFF" stroke="#94A3B8" stroke-dasharray="4 4" stroke-width="1.5" />
+      <text x="205" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#475569" letter-spacing="0.5">PLATFORM / TOOLS LOGO AREA</text>
+      <text x="205" y="44" text-anchor="middle" font-size="11" fill="#94A3B8">[ Python • PyArrow • DuckDB • dbt • Docker • Parquet ]</text>
+    </g>
+  </g>
+
+  <!-- Docker Container Outer Box Boundary -->
+  <g transform="translate(45, 110)">
+    <rect x="0" y="0" width="1260" height="660" rx="16" fill="#FFFFFF" stroke="#3B82F6" stroke-width="2" stroke-dasharray="6 6" filter="url(#card-shadow)" />
+    
+    <!-- Docker Container Badge -->
+    <rect x="25" y="-14" width="240" height="28" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5" />
+    <text x="145" y="5" text-anchor="middle" font-size="12" font-weight="700" fill="#1D4ED8">DOCKER CONTAINER BOUNDARY</text>
+
+    <!-- ========================================== -->
+    <!-- LAYER 1: BRONZE (LANDING ZONE)             -->
+    <!-- ========================================== -->
+    <g transform="translate(30, 45)">
+      <rect x="0" y="0" width="265" height="575" rx="14" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.8" filter="url(#card-shadow)" />
+      
+      <!-- Layer Badge -->
+      <rect x="16" y="16" width="100" height="24" rx="6" fill="#FFEDD5" />
+      <text x="66" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#C2410C">BRONZE LAYER</text>
+      <text x="16" y="65" font-size="17" font-weight="700" fill="#1E293B">Raw Landing Zone</text>
+      <text x="16" y="85" font-size="12" fill="#64748B">Partitioned Parquet Lake (Snappy)</text>
+
+      <!-- Ingestion Mechanism Card -->
+      <g transform="translate(14, 105)">
+        <rect x="0" y="0" width="237" height="95" rx="8" fill="#FFFFFF" stroke="#FDBA74" stroke-width="1.2" />
+        <text x="12" y="22" font-size="12" font-weight="700" fill="#9A3412">Vectorized Ingestion</text>
+        <text x="12" y="42" font-size="11" fill="#475569">• Python 3.12 + PyArrow</text>
+        <text x="12" y="60" font-size="11" fill="#475569">• Memory footprint: &lt; 500 MB</text>
+        <text x="12" y="78" font-size="11" fill="#475569">• Chunked stream writing</text>
+      </g>
+
+      <!-- Dataset 1: Customers -->
+      <g transform="translate(14, 215)">
+        <rect x="0" y="0" width="237" height="95" rx="8" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.2" />
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#1E293B">customers.parquet</text>
+        <text x="12" y="38" font-size="11" font-weight="600" fill="#C2410C">500,000 Rows</text>
+        <text x="12" y="56" font-size="11" fill="#64748B">Dirty country strings (9 styles)</text>
+        <text x="12" y="74" font-size="11" fill="#64748B">Corrupt date strings &amp; null emails</text>
+      </g>
+
+      <!-- Dataset 2: Orders -->
+      <g transform="translate(14, 325)">
+        <rect x="0" y="0" width="237" height="105" rx="8" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.2" />
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#1E293B">orders.parquet</text>
+        <text x="12" y="38" font-size="11" font-weight="600" fill="#C2410C">4,590,000 Rows</text>
+        <text x="12" y="56" font-size="11" fill="#64748B">2% duplicate retry orders (~90k)</text>
+        <text x="12" y="74" font-size="11" fill="#64748B">12% missing total_amount</text>
+        <text x="12" y="92" font-size="11" fill="#64748B">~5,000 orphan customer IDs</text>
+      </g>
+
+      <!-- Dataset 3: Payments -->
+      <g transform="translate(14, 445)">
+        <rect x="0" y="0" width="237" height="105" rx="8" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.2" />
+        <text x="12" y="20" font-size="12" font-weight="700" fill="#1E293B">payments.parquet</text>
+        <text x="12" y="38" font-size="11" font-weight="600" fill="#C2410C">5,500,000 Rows</text>
+        <text x="12" y="56" font-size="11" fill="#64748B">Multiple retry payment attempts</text>
+        <text x="12" y="74" font-size="11" fill="#64748B">Status: SUCCESS, FAILED, REFUND</text>
+        <text x="12" y="92" font-size="11" fill="#64748B">Gateways: CARD, WALLET, BANK</text>
+      </g>
+    </g>
+
+    <!-- Arrow Bronze -> Silver -->
+    <g transform="translate(305, 330)">
+      <path d="M 0 0 L 35 0" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" marker-end="url(#flow-arrow)" />
+      <text x="18" y="-12" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B">dbt run</text>
+    </g>
+
+    <!-- ========================================== -->
+    <!-- LAYER 2: SILVER (CONFORMED VIEWS)          -->
+    <!-- ========================================== -->
+    <g transform="translate(350, 45)">
+      <rect x="0" y="0" width="275" height="575" rx="14" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1.8" filter="url(#card-shadow)" />
+      
+      <!-- Layer Badge -->
+      <rect x="16" y="16" width="95" height="24" rx="6" fill="#E0E7FF" />
+      <text x="63" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#4338CA">SILVER LAYER</text>
+      <text x="16" y="65" font-size="17" font-weight="700" fill="#1E293B">Conformed &amp; Cleaned</text>
+      <text x="16" y="85" font-size="12" fill="#64748B">dbt Staging Models (DuckDB Views)</text>
+
+      <!-- Model 1: stg_customers -->
+      <g transform="translate(14, 115)">
+        <rect x="0" y="0" width="247" height="120" rx="8" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1.2" />
+        <text x="12" y="22" font-size="13" font-weight="700" fill="#312E81">stg_customers</text>
+        <text x="12" y="42" font-size="11" fill="#475569">• Standardize country: ID, US, SG, OTHER</text>
+        <text x="12" y="60" font-size="11" fill="#475569">• Safe timestamp casting (TRY_CAST)</text>
+        <text x="12" y="78" font-size="11" fill="#475569">• Coalesce NULL email to fallback</text>
+        <text x="12" y="96" font-size="11" font-weight="600" fill="#4F46E5">Output: 500,000 Clean Profiles</text>
+      </g>
+
+      <!-- Model 2: stg_orders -->
+      <g transform="translate(14, 250)">
+        <rect x="0" y="0" width="247" height="140" rx="8" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1.2" />
+        <text x="12" y="22" font-size="13" font-weight="700" fill="#312E81">stg_orders</text>
+        <text x="12" y="42" font-size="11" fill="#475569">• Window Deduplication:</text>
+        <text x="20" y="58" font-size="10" font-family="monospace" fill="#0F172A">ROW_NUMBER() OVER(PARTITION BY order_id)</text>
+        <text x="12" y="78" font-size="11" fill="#475569">• Missing Total Amount Imputation:</text>
+        <text x="20" y="94" font-size="10" font-family="monospace" fill="#0F172A">gross_amount = item_count * unit_price</text>
+        <text x="12" y="118" font-size="11" font-weight="600" fill="#4F46E5">Output: 4,500,000 Distinct Orders</text>
+      </g>
+
+      <!-- Model 3: stg_payments -->
+      <g transform="translate(14, 405)">
+        <rect x="0" y="0" width="247" height="145" rx="8" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1.2" />
+        <text x="12" y="22" font-size="13" font-weight="700" fill="#312E81">stg_payments</text>
+        <text x="12" y="42" font-size="11" fill="#475569">• Payment State Ranking:</text>
+        <text x="20" y="58" font-size="10" font-family="monospace" fill="#0F172A">ROW_NUMBER() OVER(PARTITION BY order_id</text>
+        <text x="20" y="72" font-size="10" font-family="monospace" fill="#0F172A">ORDER BY status='SUCCESS' DESC, time DESC)</text>
+        <text x="12" y="94" font-size="11" fill="#475569">• Collapses 5.5M attempts into 1 final state</text>
+        <text x="12" y="118" font-size="11" font-weight="600" fill="#4F46E5">Output: 1 Ranked State per Order</text>
+      </g>
+    </g>
+
+    <!-- Arrow Silver -> Gold -->
+    <g transform="translate(635, 330)">
+      <path d="M 0 0 L 35 0" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" marker-end="url(#flow-arrow)" />
+      <text x="18" y="-12" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B">dbt run</text>
+    </g>
+
+    <!-- ========================================== -->
+    <!-- LAYER 3: GOLD (STAR SCHEMA MARTS)          -->
+    <!-- ========================================== -->
+    <g transform="translate(680, 45)">
+      <rect x="0" y="0" width="275" height="575" rx="14" fill="#FEFCE8" stroke="#CA8A04" stroke-width="1.8" filter="url(#card-shadow)" />
+      
+      <!-- Layer Badge -->
+      <rect x="16" y="16" width="85" height="24" rx="6" fill="#FEF9C3" />
+      <text x="58" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#A16207">GOLD LAYER</text>
+      <text x="16" y="65" font-size="17" font-weight="700" fill="#1E293B">Dimensional Marts</text>
+      <text x="16" y="85" font-size="12" fill="#64748B">dbt Star Schema Tables (DuckDB)</text>
+
+      <!-- Mart 1: dim_customers -->
+      <g transform="translate(14, 115)">
+        <rect x="0" y="0" width="247" height="180" rx="8" fill="#FFFFFF" stroke="#FDE047" stroke-width="1.2" />
+        <text x="12" y="22" font-size="13" font-weight="700" fill="#854D0E">dim_customers (Dimension)</text>
+        <text x="12" y="42" font-size="11" fill="#475569">• Surrogate Key Generation:</text>
+        <text x="20" y="58" font-size="10" font-family="monospace" fill="#0F172A">DENSE_RANK() OVER(ORDER BY cust_id)</text>
+        
+        <!-- Orphan Member Highlight -->
+        <rect x="10" y="70" width="227" height="60" rx="6" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1" />
+        <text x="18" y="88" font-size="10" font-weight="700" fill="#92400E">Orphan Fallback Member (-1):</text>
+        <text x="18" y="104" font-size="10" font-family="monospace" fill="#78350F">customer_key: -1 | 'UNKNOWN'</text>
+        <text x="18" y="118" font-size="10" fill="#78350F">Guarantees 100% referential integrity</text>
+
+        <text x="12" y="152" font-size="11" font-weight="600" fill="#A16207">500,001 Records (500k + 1 Fallback)</text>
+      </g>
+
+      <!-- Mart 2: fct_order_payments -->
+      <g transform="translate(14, 310)">
+        <rect x="0" y="0" width="247" height="240" rx="8" fill="#FFFFFF" stroke="#FDE047" stroke-width="1.2" />
+        <text x="12" y="22" font-size="13" font-weight="700" fill="#854D0E">fct_order_payments (Fact)</text>
+        <text x="12" y="42" font-size="11" fill="#475569">• Grain: 1 row per order</text>
+        <text x="12" y="60" font-size="11" fill="#475569">• FK: COALESCE(customer_key, -1)</text>
+        <text x="12" y="78" font-size="11" fill="#475569">• Financial Settlement Calculation:</text>
+        
+        <rect x="10" y="88" width="227" height="64" rx="6" fill="#F8FAFC" stroke="#E2E8F0" />
+        <text x="16" y="106" font-size="10" font-family="monospace" fill="#0F172A">CASE WHEN status='SUCCESS'</text>
+        <text x="24" y="120" font-size="10" font-family="monospace" fill="#0F172A">THEN gross_amount_usd</text>
+        <text x="24" y="134" font-size="10" font-family="monospace" fill="#0F172A">ELSE 0.0 END</text>
+
+        <text x="12" y="172" font-size="11" fill="#475569">• Measures: gross_amount, net_settled</text>
+        <text x="12" y="190" font-size="11" fill="#475569">• Joins to dim_customers via key</text>
+        <text x="12" y="215" font-size="11" font-weight="600" fill="#A16207">Output: 4,500,000 Fact Records</text>
+      </g>
+    </g>
+
+    <!-- Arrow Gold -> Serving -->
+    <g transform="translate(965, 330)">
+      <path d="M 0 0 L 35 0" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" marker-end="url(#flow-arrow)" />
+      <text x="18" y="-12" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B">SQL query</text>
+    </g>
+
+    <!-- ========================================== -->
+    <!-- LAYER 4: EXECUTIVE SERVING (ANALYTICS)     -->
+    <!-- ========================================== -->
+    <g transform="translate(1010, 45)">
+      <rect x="0" y="0" width="220" height="575" rx="14" fill="#F0FDF4" stroke="#16A34A" stroke-width="1.8" filter="url(#card-shadow)" />
+      
+      <!-- Layer Badge -->
+      <rect x="16" y="16" width="105" height="24" rx="6" fill="#DCFCE7" />
+      <text x="68" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#15803D">EXECUTIVE MART</text>
+      <text x="16" y="65" font-size="17" font-weight="700" fill="#1E293B">Serving &amp; Insights</text>
+      <text x="16" y="85" font-size="12" fill="#64748B">analytics_insights.py</text>
+
+      <!-- KPI 1 -->
+      <g transform="translate(14, 115)">
+        <rect x="0" y="0" width="192" height="120" rx="8" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="1.2" />
+        <text x="12" y="22" font-size="12" font-weight="700" fill="#14532D">1. Revenue Settlement</text>
+        <text x="12" y="44" font-size="11" fill="#475569">• Total Gross Revenue</text>
+        <text x="12" y="62" font-size="11" fill="#475569">• Total Net Settled Cash</text>
+        <text x="12" y="80" font-size="11" fill="#475569">• Conversion Rate %</text>
+        <text x="12" y="100" font-size="11" font-weight="700" fill="#16A34A">Real-time KPI Output</text>
+      </g>
+
+      <!-- KPI 2 -->
+      <g transform="translate(14, 250)">
+        <rect x="0" y="0" width="192" height="120" rx="8" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="1.2" />
+        <text x="12" y="22" font-size="12" font-weight="700" fill="#14532D">2. Geographic Splits</text>
+        <text x="12" y="44" font-size="11" fill="#475569">• Net Settled by Country:</text>
+        <text x="20" y="62" font-size="11" fill="#1E293B">US, ID, SG, OTHER</text>
+        <text x="12" y="82" font-size="11" fill="#475569">• Star Join to Dimension</text>
+        <text x="12" y="100" font-size="11" font-weight="700" fill="#16A34A">Cross-border insights</text>
+      </g>
+
+      <!-- KPI 3 -->
+      <g transform="translate(14, 385)">
+        <rect x="0" y="0" width="192" height="120" rx="8" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="1.2" />
+        <text x="12" y="22" font-size="12" font-weight="700" fill="#14532D">3. Gateway Performance</text>
+        <text x="12" y="44" font-size="11" fill="#475569">• Total attempts vs Success</text>
+        <text x="12" y="62" font-size="11" fill="#475569">• Gateway Success Rates</text>
+        <text x="12" y="80" font-size="11" fill="#475569">• Card vs Wallet vs Bank</text>
+        <text x="12" y="100" font-size="11" font-weight="700" fill="#16A34A">Gateway Health Index</text>
+      </g>
+    </g>
+
+    <!-- ========================================== -->
+    <!-- DATA QUALITY CONTRACT CHECKPOINT BANNER     -->
+    <!-- ========================================== -->
+    <g transform="translate(350, 625)">
+      <rect x="0" y="0" width="605" height="24" rx="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1.2" />
+      <text x="302" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#065F46">
+        DATA QUALITY CONTRACT GATE: 6/6 dbt Assertions Passed (Unique, Not Null, Accepted Values, Relationships)
+      </text>
+    </g>
+  </g>
+</svg>
